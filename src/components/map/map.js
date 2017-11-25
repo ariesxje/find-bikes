@@ -5,7 +5,7 @@ import MapView from 'react-native-maps';
 import Pin from './Pin';
 import Callout from './Callout';
 
-const defaul_region =  {
+const default_region =  {
   latitude: -37.82706320389364,
   latitudeDelta: 0.09451123647402682,
   longitude: 144.96347789792821,
@@ -16,7 +16,7 @@ export default class Map extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      region: defaul_region,
+      region: default_region,
     };
 
     this.handleDragMap = this.handleDragMap.bind(this);
@@ -30,7 +30,7 @@ export default class Map extends Component {
   }
 
   focusOnStation(station) {
-    this.refs.map.animateToCoordinate(station.latlng, 2);
+    this.refs.map.animateToCoordinate(station.latlng, 800);
     setTimeout(() =>  {this.refs['marker' + station.id].showCallout()}, 1000)
   }
 
@@ -39,7 +39,7 @@ export default class Map extends Component {
       <MapView
         ref="map"
         style={styles.map}
-        region={this.state.region}
+        initialRegion={default_region}
         onPress={this.props.focusOnMap}
       >
         {this.props.stations.map(station => (
