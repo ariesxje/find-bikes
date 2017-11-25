@@ -1,7 +1,7 @@
 'use strict';
 
-import React, {
-  Component,
+import React, { Component } from 'react';
+import {
   View,
   Text,
   StyleSheet
@@ -10,7 +10,7 @@ import React, {
 import Button from 'react-native-button';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-class FBRefreshButton extends Component {
+export default class RefreshButton extends Component {
   constructor(props) {
     super(props)
   }
@@ -22,5 +22,3 @@ class FBRefreshButton extends Component {
     )
   }
 }
-
-module.exports = FBRefreshButton;

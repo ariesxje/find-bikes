@@ -1,7 +1,5 @@
-'use strict';
-
-import React, {
-  Component,
+import React, { Component } from 'react';
+import {
   View,
   StyleSheet,
   Image,
@@ -12,26 +10,17 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 var MAX_SIZE = 50;
 
-class FBPinView extends Component {
+export default class Pin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      numberOfBikes: props.numberOfBikes,
       bounceValue: new Animated.Value(0)
     }
   }
 
-  render() {
-    return (
-      <Animated.View style={[styles.iconContainer, styles.availability(this.state.numberOfBikes), this.getContainerStyle(), this.scaleAnimation()]}>
-        <Icon name="bicycle" color="white" size={this.getIconSize()}/>
-      </Animated.View>
-    )
-  }
-
   componentDidMount() {
     Animated.sequence([
-      Animated.delay(this.props.delay*10),
+      Animated.delay(this.props.delay*30),
       Animated.spring(
         this.state.bounceValue,
         {
@@ -43,12 +32,12 @@ class FBPinView extends Component {
   }
 
   getIconSize = () => {
-    var number = this.state.numberOfBikes/1.8;
+    var number = this.props.numberOfBikes/1.8;
     return 10 + (number > MAX_SIZE ? MAX_SIZE : number);
   };
 
   getContainerSize = () => {
-    var number = this.state.numberOfBikes/1;
+    var number = this.props.numberOfBikes/1;
     return 16 + (number > MAX_SIZE ? MAX_SIZE : number);
   };
 
@@ -67,9 +56,15 @@ class FBPinView extends Component {
       ]
     }
   };
-}
 
-module.exports = FBPinView;
+  render() {
+    return (
+      <Animated.View style={[styles.iconContainer, styles.availability(this.props.numberOfBikes), this.getContainerStyle(), this.scaleAnimation()]}>
+        <Icon name="bicycle" color="white" size={this.getIconSize()}/>
+      </Animated.View>
+    )
+  }
+}
 
 var styles = {
   iconContainer: {
@@ -86,4 +81,4 @@ var styles = {
   icon: {
     tintColor: '#ffffff'
   }
-}
+};

@@ -1,48 +1,39 @@
 'use strict';
-
-import React, {
-  Component,
+import React, { Component } from 'react';
+import {
   View,
   Text,
   StyleSheet,
-  LinkingIOS
+  Linking
 } from 'react-native';
 
 import Button from 'react-native-button';
 
-class FBCalloutView extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      station: props.station
-    }
-  }
+export default class Callout extends Component {
 
   render() {
     return (
-      <View>
-        <Text>{this.state.station.title}</Text>
-        <Text>Available bikes: {this.state.station.numberOfBikes}</Text>
+      <View style={{width: 200}}>
+        <Text>{this.props.station.title}</Text>
+        <Text>Available bikes: {this.props.station.numberOfBikes}</Text>
         <Button style={{fontSize: 15}} onPress={this.getDirection}>Show me directions</Button>
       </View>
     )
   }
 
   getDirection = () => {
-    var googleMapPrefix = 'comgooglemaps://',
+    var googleMapPrefix = 'https://www.google.com/maps/',
       appleMapPrefix = 'http://maps.apple.com/',
       destinationParams = '?daddr=',
-      latlng = this.state.station.latlng.latitude + ',' + this.state.station.latlng.longitude,
+      latlng = this.props.station.latlng.latitude + ',' + this.props.station.latlng.longitude,
       googleDirectionMode = '&directionsmode=walking',
       appleTransportType = '&dirflg=w';
 
     var googleMapsURL = googleMapPrefix + destinationParams + latlng + googleDirectionMode,
       appleMapsURL = appleMapPrefix + destinationParams + latlng + appleTransportType;
 
-    LinkingIOS.canOpenURL(googleMapPrefix, (supported) => {
-      supported ? LinkingIOS.openURL(googleMapsURL) : LinkingIOS.openURL(appleMapsURL);
+    Linking.canOpenURL(googleMapPrefix).then((supported) => {
+      supported ? Linking.openURL(googleMapsURL) : Linking.openURL(appleMapsURL);
     })
   };
 }
-
-module.exports = FBCalloutView;

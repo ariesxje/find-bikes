@@ -1,7 +1,7 @@
 'use strict';
 
-import React, {
-  Component,
+import React, { Component } from 'react';
+import {
   View,
   Text,
   TextInput,
@@ -10,7 +10,9 @@ import React, {
   Animated
 } from 'react-native';
 
-class FBTypeaheadSuggestionView extends Component {
+var Icon = require('react-native-vector-icons/FontAwesome');
+
+export default class TypeaheadSuggestion extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -67,6 +69,4 @@ var styles = {
     justifyContent: 'center',
     alignItems: 'center'
   }
-}
-
-module.exports = FBTypeaheadSuggestionView;
+};

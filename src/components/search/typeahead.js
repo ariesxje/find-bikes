@@ -1,7 +1,7 @@
 'use strict';
 
-import React, {
-  Component,
+import React, { Component } from 'react';
+import {
   View,
   Text,
   TextInput,
@@ -10,11 +10,11 @@ import React, {
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Refresh from './refresh-button';
+import RefreshButton from './RefreshButton';
 
-class FBTypeaheadView extends Component {
+export default class Typeahead extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       text: '',
       isFocused: false
@@ -45,7 +45,7 @@ class FBTypeaheadView extends Component {
           onChangeText={this.handleInputChange}
           value={this.state.text}/>
         <View style={styles.rightbutton}>
-          <Refresh refresh={this.props.refresh}/>
+          <RefreshButton refresh={this.props.refresh}/>
         </View>
       </View>
     )
@@ -84,8 +84,6 @@ class FBTypeaheadView extends Component {
   };
 }
 
-module.exports = FBTypeaheadView;
-
 var styles = {
   typeahead: {
     flex: 1,
@@ -108,4 +106,4 @@ var styles = {
     justifyContent: 'center',
     alignItems: 'center'
   }
-}
+};

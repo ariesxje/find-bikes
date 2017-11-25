@@ -1,20 +1,18 @@
 'use strict';
-
-import React, {
-  Component,
+import React, { Component } from 'react';
+import {
   View,
   Text,
   TextInput,
   StyleSheet,
   TouchableOpacity
 } from 'react-native';
-
 import R from 'ramda';
 
-import Typeahead from './typeahead';
-import Suggestion from './typeahead-suggestion';
+import Typeahead from './Typeahead';
+import TypeaheadSuggestion from './TypeaheadSuggestion';
 
-class FBSearchController extends Component {
+export default class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -41,7 +39,7 @@ class FBSearchController extends Component {
       return (
         <View>
           {this.state.suggestions.map(suggestion => (
-            <Suggestion suggestion={suggestion} key={suggestion.id} focusOnStation={this.closeSuggestionsAndFocusOnStation}/>
+            <TypeaheadSuggestion suggestion={suggestion} key={suggestion.id} focusOnStation={this.closeSuggestionsAndFocusOnStation}/>
           ))}
         </View>
       );
@@ -82,11 +80,11 @@ class FBSearchController extends Component {
 //helper methods
 var firstN = function (array, n) {
   return R.slice(0, n, array);
-}
+};
 
 var first5 = function (array) {
   return firstN(array, 5);
-}
+};
 
 var styles = {
   container: {
@@ -99,6 +97,4 @@ var styles = {
     marginRight: 10,
     backgroundColor: '#FFF'
   }
-}
-
-module.exports = FBSearchController;
+};
