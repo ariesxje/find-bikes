@@ -15,9 +15,6 @@ const default_region =  {
 export default class Map extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      region: default_region,
-    };
 
     this.handleDragMap = this.handleDragMap.bind(this);
     this.focusOnStation = this.focusOnStation.bind(this);

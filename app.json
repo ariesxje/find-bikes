@@ -1,5 +1,12 @@
 {
   "expo": {
+    "name": "Find bikes",
+    "icon": "./path/to/your/app-icon.png",
+    "version": "1.0.0",
+    "slug": "your-app-slug",
+    "ios": {
+      "bundleIdentifier": "com.kyle.findbikes"
+    },
     "sdkVersion": "22.0.0"
   }
 }
